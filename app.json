@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "devscope",
+    "name": "DevScope",
     "slug": "devscope",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,9 +8,11 @@
     "scheme": "devscope",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/expo.icon",
+      "bundleIdentifier": "com.lemesvini.devscope"
     },
     "android": {
+      "package": "com.lemesvini.devscope",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
