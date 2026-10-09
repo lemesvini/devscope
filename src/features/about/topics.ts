@@ -24,7 +24,7 @@ export const ABOUT_TOPICS: AboutTopic[] = [
     {
         key: "design",
         title: "Design",
-        summary: "Interface nativa com identidade própria.",
+        summary: "Fonte Unbounded, tema de cores.",
         icon: { ios: "paintpalette", android: "palette", web: "palette" },
         body: [
             "Abas, barra de busca, menus e sheets são os componentes nativos de cada plataforma, através do Expo Router.",

@@ -54,7 +54,6 @@ export const githubApi = createApi({
 export const {
   useGetUserQuery,
   useSearchUsersQuery,
-  useLazyGetUserQuery,
   useGetUserReposQuery,
   useGetRepoQuery,
   useGetContributionsQuery,

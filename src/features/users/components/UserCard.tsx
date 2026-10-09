@@ -44,7 +44,6 @@ export default function UserCard({ user }: UserCardProps) {
                         padding: 8,
                         gap: 4,
                         borderBottomColor: colors.border,
-                        // borderBottomWidth: 1,
                     }}
 
                 >

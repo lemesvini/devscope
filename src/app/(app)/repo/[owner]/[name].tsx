@@ -9,6 +9,7 @@ import { useThemeColors } from "@/theme/useThemeColors";
 import { useToolbarIcons, type ToolbarIconSpec } from "@/theme/useToolbarIcons";
 
 const TOOLBAR_ICONS = {
+    openInGitHub: { sf: "arrow.up.right.square", md: "open_in_new" },
     share: { sf: "square.and.arrow.up", md: "share" },
 } satisfies Record<string, ToolbarIconSpec>;
 
@@ -23,7 +24,7 @@ export default function RepoDetailsScreen() {
             {icons ? (
                 <Stack.Toolbar placement="right">
                     <Stack.Toolbar.Button
-                        icon={require("@/assets/icons/github.png")}
+                        icon={icons.openInGitHub}
                         tintColor={colors.primary}
                         accessibilityLabel="Abrir no GitHub"
                         disabled={!repo}
