@@ -8,11 +8,21 @@ export type ToolbarIcon = SFSymbol | ImageSourcePropType;
 const ICON_SIZE = 24;
 const materialCache = new Map<AndroidSymbol, ImageSourcePropType>();
 
-function resolveIcons<K extends string>(specs: Record<K, ToolbarIconSpec>) {
+function resolveIcons<K extends string>(specs: Record<K, ToolbarIconSpec>): Record<K, ToolbarIcon> | null {
   const entries = Object.entries(specs) as [K, ToolbarIconSpec][];
-  return Object.fromEntries(
-    entries.map(([key, { sf, md }]) => [key, Platform.OS === "android" ? materialCache.get(md) : sf]),
-  ) as Record<K, ToolbarIcon | undefined>;
+  const icons = {} as Record<K, ToolbarIcon>;
+
+  for (const [key, { sf, md }] of entries) {
+    if (Platform.OS !== "android") {
+      icons[key] = sf;
+      continue;
+    }
+    const source = materialCache.get(md);
+    if (!source) return null;
+    icons[key] = source;
+  }
+
+  return icons;
 }
 
 async function loadMaterialIcons(symbols: AndroidSymbol[]) {

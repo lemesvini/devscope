@@ -43,26 +43,28 @@ export default function SearchScreen() {
 
     return (
         <>
-            <Stack.Toolbar placement="right">
-                <Stack.Toolbar.Menu
-                    icon={icons[sort]}
-                    title="Ordenar por"
-                    tintColor={colors.primary}
-                    accessibilityLabel="Ordenar resultados"
-                >
-                    {SORT_OPTIONS.map(({ key, label }) => (
-                        <Stack.Toolbar.MenuAction
-                            key={key}
-                            icon={icons[key]}
-                            isOn={sort === key}
-                            subtitle={sort === key && key !== "best-match" ? (order === "desc" ? "Decrescente" : "Crescente") : undefined}
-                            onPress={() => dispatch(sortChanged(key))}
-                        >
-                            {label}
-                        </Stack.Toolbar.MenuAction>
-                    ))}
-                </Stack.Toolbar.Menu>
-            </Stack.Toolbar>
+            {icons ? (
+                <Stack.Toolbar placement="right">
+                    <Stack.Toolbar.Menu
+                        icon={icons[sort]}
+                        title="Ordenar por"
+                        tintColor={colors.primary}
+                        accessibilityLabel="Ordenar resultados"
+                    >
+                        {SORT_OPTIONS.map(({ key, label }) => (
+                            <Stack.Toolbar.MenuAction
+                                key={key}
+                                icon={icons[key]}
+                                isOn={sort === key}
+                                subtitle={sort === key && key !== "best-match" ? (order === "desc" ? "Decrescente" : "Crescente") : undefined}
+                                onPress={() => dispatch(sortChanged(key))}
+                            >
+                                {label}
+                            </Stack.Toolbar.MenuAction>
+                        ))}
+                    </Stack.Toolbar.Menu>
+                </Stack.Toolbar>
+            ) : null}
             <Stack.SearchBar
                 placement="automatic"
                 placeholder="Usuário do GitHub"

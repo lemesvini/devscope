@@ -50,50 +50,52 @@ export default function UserProfileScreen() {
 
     return (
         <>
-            <Stack.Toolbar placement="right">
-                <Stack.Toolbar.Menu
-                    icon={icons[sort.key]}
-                    title="Ordenar por"
-                    tintColor={colors.primary}
-                    accessibilityLabel="Ordenar repositórios"
-                    separateBackground
-                >
-                    {SORT_OPTIONS.map(({ key, label }) => (
-                        <Stack.Toolbar.MenuAction
-                            key={key}
-                            icon={icons[key]}
-                            isOn={sort.key === key}
-                            subtitle={sort.key === key ? (sort.direction === "desc" ? "Decrescente" : "Crescente") : undefined}
-                            onPress={() => dispatch(sortChanged(key))}
-                        >
-                            {label}
-                        </Stack.Toolbar.MenuAction>
-                    ))}
-                </Stack.Toolbar.Menu>
+            {icons ? (
+                <Stack.Toolbar placement="right">
+                    <Stack.Toolbar.Menu
+                        icon={icons[sort.key]}
+                        title="Ordenar por"
+                        tintColor={colors.primary}
+                        accessibilityLabel="Ordenar repositórios"
+                        separateBackground
+                    >
+                        {SORT_OPTIONS.map(({ key, label }) => (
+                            <Stack.Toolbar.MenuAction
+                                key={key}
+                                icon={icons[key]}
+                                isOn={sort.key === key}
+                                subtitle={sort.key === key ? (sort.direction === "desc" ? "Decrescente" : "Crescente") : undefined}
+                                onPress={() => dispatch(sortChanged(key))}
+                            >
+                                {label}
+                            </Stack.Toolbar.MenuAction>
+                        ))}
+                    </Stack.Toolbar.Menu>
 
-                <Stack.Toolbar.Button
-                    icon={icons.share}
-                    tintColor={colors.primary}
-                    accessibilityLabel="Compartilhar perfil"
-                    disabled={!user}
-                    onPress={() => {
-                        if (!user) return;
-                        Share.share(
-                            Platform.OS === "ios" ? { url: user.html_url } : { message: user.html_url },
-                        );
-                    }}
-                />
-                <Stack.Toolbar.Button
-                    icon={isFavorite ? icons.favorited : icons.favorite}
-                    tintColor={colors.primary}
-                    accessibilityLabel={isFavorite ? "Remover dos favoritos" : "Salvar nos favoritos"}
-                    disabled={!user}
-                    onPress={() => {
-                        if (!user) return;
-                        dispatch(favoriteToggled({ login: user.login, name: user.name, avatar_url: user.avatar_url }));
-                    }}
-                />
-            </Stack.Toolbar>
+                    <Stack.Toolbar.Button
+                        icon={icons.share}
+                        tintColor={colors.primary}
+                        accessibilityLabel="Compartilhar perfil"
+                        disabled={!user}
+                        onPress={() => {
+                            if (!user) return;
+                            Share.share(
+                                Platform.OS === "ios" ? { url: user.html_url } : { message: user.html_url },
+                            );
+                        }}
+                    />
+                    <Stack.Toolbar.Button
+                        icon={isFavorite ? icons.favorited : icons.favorite}
+                        tintColor={colors.primary}
+                        accessibilityLabel={isFavorite ? "Remover dos favoritos" : "Salvar nos favoritos"}
+                        disabled={!user}
+                        onPress={() => {
+                            if (!user) return;
+                            dispatch(favoriteToggled({ login: user.login, name: user.name, avatar_url: user.avatar_url }));
+                        }}
+                    />
+                </Stack.Toolbar>
+            ) : null}
             {user ? (
                 <FlatList
                     contentInsetAdjustmentBehavior="automatic"

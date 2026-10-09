@@ -20,31 +20,33 @@ export default function RepoDetailsScreen() {
 
     return (
         <>
-            <Stack.Toolbar placement="right">
-                <Stack.Toolbar.Button
-                    icon={require("@/assets/icons/github.png")}
-                    tintColor={colors.primary}
-                    accessibilityLabel="Abrir no GitHub"
-                    disabled={!repo}
-                    onPress={() => {
-                        if (!repo) return;
-                        WebBrowser.openBrowserAsync(repo.html_url);
-                    }}
-                    separateBackground
-                />
-                <Stack.Toolbar.Button
-                    icon={icons.share}
-                    tintColor={colors.primary}
-                    accessibilityLabel="Compartilhar repositório"
-                    disabled={!repo}
-                    onPress={() => {
-                        if (!repo) return;
-                        Share.share(
-                            Platform.OS === "ios" ? { url: repo.html_url } : { message: repo.html_url },
-                        );
-                    }}
-                />
-            </Stack.Toolbar>
+            {icons ? (
+                <Stack.Toolbar placement="right">
+                    <Stack.Toolbar.Button
+                        icon={require("@/assets/icons/github.png")}
+                        tintColor={colors.primary}
+                        accessibilityLabel="Abrir no GitHub"
+                        disabled={!repo}
+                        onPress={() => {
+                            if (!repo) return;
+                            WebBrowser.openBrowserAsync(repo.html_url);
+                        }}
+                        separateBackground
+                    />
+                    <Stack.Toolbar.Button
+                        icon={icons.share}
+                        tintColor={colors.primary}
+                        accessibilityLabel="Compartilhar repositório"
+                        disabled={!repo}
+                        onPress={() => {
+                            if (!repo) return;
+                            Share.share(
+                                Platform.OS === "ios" ? { url: repo.html_url } : { message: repo.html_url },
+                            );
+                        }}
+                    />
+                </Stack.Toolbar>
+            ) : null}
             {repo ? (
                 <ScrollView
                     contentInsetAdjustmentBehavior="automatic"

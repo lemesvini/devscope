@@ -1,5 +1,6 @@
 import { useThemeColors } from "@/theme/useThemeColors";
 import { Stack } from "expo-router";
+import { Platform } from "react-native";
 
 
 export default function AppLayout() {
@@ -15,7 +16,7 @@ export default function AppLayout() {
           title: "",
           headerShadowVisible: false,
           headerBackButtonDisplayMode: "minimal",
-          headerTransparent: true,
+          headerTransparent: Platform.OS === "ios",
           headerTintColor: colors.primary,
 
         })}
@@ -26,7 +27,7 @@ export default function AppLayout() {
           title: "",
           headerShadowVisible: false,
           headerBackButtonDisplayMode: "minimal",
-          headerTransparent: true,
+          headerTransparent: Platform.OS === "ios",
           headerTintColor: colors.primary,
         }}
       />

@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { Platform } from "react-native";
 
 import { fonts } from "@/theme/fonts";
 import { useThemeColors } from "@/theme/useThemeColors";
@@ -16,7 +17,7 @@ export default function FavoritesLayout() {
           headerLargeTitle: true,
           headerLargeTitleStyle: { fontFamily: fonts.bold, color: titleColor },
           headerTitleStyle: { fontFamily: fonts.semibold, color: titleColor },
-          headerTransparent: true,
+          headerTransparent: Platform.OS === "ios",
         }}
       />
     </Stack>
