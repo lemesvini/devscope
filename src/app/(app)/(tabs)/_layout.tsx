@@ -1,14 +1,13 @@
 import { NativeTabs } from "expo-router/unstable-native-tabs";
-import { useColorScheme } from "react-native";
 
-import { colors } from "@/theme/colors";
+import { useThemeColors } from "@/theme/useThemeColors";
 
 
 export default function TabsLayout() {
-    const scheme = useColorScheme() === "dark" ? "dark" : "light";
+    const colors = useThemeColors();
 
   return (
-    <NativeTabs tintColor={colors[scheme].primary}>
+    <NativeTabs tintColor={colors.primary}>
       <NativeTabs.Trigger name="home">
         <NativeTabs.Trigger.Label hidden>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="sun.horizon" md="wb_twilight" />
@@ -17,9 +16,9 @@ export default function TabsLayout() {
         <NativeTabs.Trigger.Label hidden>Busca</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon sf="magnifyingglass" md="search" />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="profile">
-        <NativeTabs.Trigger.Label hidden>Perfil</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon sf="person" md="account_circle" />
+      <NativeTabs.Trigger name="favorites">
+        <NativeTabs.Trigger.Label hidden>Favoritos</NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Icon sf="bookmark" md="bookmark" />
       </NativeTabs.Trigger>
     </NativeTabs>
   );

@@ -10,6 +10,16 @@ export type GitHubUser = {
   html_url: string;
 };
 
+export type UserSearchItem = Pick<GitHubUser, "login" | "avatar_url" | "html_url"> & { id: number };
+
+export type UserSearchResponse = {
+  total_count: number;
+  incomplete_results: boolean;
+  items: UserSearchItem[];
+};
+
+export type UserSearchSort = "followers" | "repositories" | "joined";
+
 export type Repo = {
   id: number;
   name: string;
@@ -29,3 +39,16 @@ export type RepoDetails = Repo & {
   subscribers_count: number;
   topics: string[];
 };
+
+export type ContributionLevel = 0 | 1 | 2 | 3 | 4;
+
+export interface ContributionDay {
+  date: string; 
+  count: number;
+  level: ContributionLevel;
+}
+
+export interface ContributionCalendar {
+  total: number;
+  weeks: (ContributionDay | null)[][];
+}

@@ -1,13 +1,11 @@
 import { Stack } from "expo-router";
-import { useColorScheme } from "react-native";
 
-import { colors } from "@/theme/colors";
 import { fonts } from "@/theme/fonts";
+import { useThemeColors } from "@/theme/useThemeColors";
 
 export default function SearchLayout() {
-  const scheme = useColorScheme() === "dark" ? "dark" : "light";
+  const colors = useThemeColors();
 
-  const titleColor = colors[scheme].primary;
   return (
     <Stack>
       <Stack.Screen
@@ -15,8 +13,8 @@ export default function SearchLayout() {
         options={{
           title: "Busca",
           headerLargeTitle: true,
-          headerLargeTitleStyle: { fontFamily: fonts.bold, color: titleColor },
-          headerTitleStyle: { fontFamily: fonts.semibold, color: titleColor },
+          headerLargeTitleStyle: { fontFamily: fonts.bold, color: colors.primary },
+          headerTitleStyle: { fontFamily: fonts.semibold, color: colors.primary },
         }}
       />
     </Stack>
